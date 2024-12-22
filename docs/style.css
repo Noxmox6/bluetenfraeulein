@@ -1,4 +1,4 @@
-body {
+.haarspangen-content, .schluesselanhaenger-content {
   counter-reset: section-counter;
 }
 
