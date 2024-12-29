@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Seifenfräulein Sicherheitshinweise</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    <script type="module">
+      import { h, render } from "https://esm.sh/preact";
+      import htm from "https://esm.sh/htm";
+      import TextArticle from "../../scripts/v1/text-article.js";
+      import Impressum from "../../scripts/v1/impressum.js";
+      import Headline from "../../scripts/v1/headline.js";
+
+      const html = htm.bind(h);
+
+      const data = [
+        {
+          strongText: "Hautkontakt vermeiden",
+          description:
+            "UV-Resin kann Hautreizungen oder allergische Reaktionen auslösen. Direkten Kontakt möglichst vermeiden.",
+        },
+        {
+          strongText: "Kein Spielzeug",
+          description:
+            "Schlüsselanhänger sind kein Spielzeug und sollten von Kindern unter 3 Jahren ferngehalten werden, da Kleinteile verschluckt werden können (Erstickungsgefahr).",
+        },
+        {
+          strongText: "Bruchgefahr",
+          description:
+            "UV-Resin kann bei starkem Druck oder Sturz brechen und scharfe Kanten bilden. Defekte Produkte nicht weiterverwenden und ordnungsgemäß entsorgen.",
+        },
+        {
+          strongText: "Von Chemikalien fernhalten",
+          description:
+            "Aggressive Reinigungsmittel, Alkohol oder Lösemittel können die Oberfläche beschädigen.",
+        },
+        {
+          strongText: "Hitze vermeiden",
+          description:
+            "UV-Resin kann sich bei hohen Temperaturen (z. B. in direktem Sonnenlicht oder im Auto) verformen oder schmelzen.",
+        },
+        {
+          strongText: "Nicht in den Mund nehmen",
+          description:
+            "Dieses Produkt ist nicht lebensmittelecht und darf nicht in Kontakt mit Lebensmitteln oder dem Mund kommen.",
+        },
+        {
+          strongText: "Defekte Produkte entsorgen",
+          description:
+            "Schlüsselanhänger mit sichtbaren Schäden, wie Rissen oder Splittern, sollten umgehend entsorgt werden.",
+        },
+        {
+          strongText: "Umweltfreundliche Entsorgung",
+          description:
+            "Überschüssiges UV-Resin oder beschädigte Schlüsselanhänger gemäß den örtlichen Vorschriften für Kunststoffe oder Harze entsorgen.",
+        },
+      ];
+
+      const Content = () => {
+        return html`
+          ${data.map(
+            (entry) => html`
+              <${TextArticle}
+                strongText="${entry.strongText}"
+                description="${entry.description}"
+              />
+            `
+          )}
+        `;
+      };
+
+      render(html`<${Headline} title="Seifenfräulein" subtitle="Sicherheitshinweise Schlüsselanhänger" />`, document.getElementById("headline"));
+      render(html`<${Content} />`, document.getElementById("content"));
+      render(html`<${Impressum} />`, document.getElementById("footer"));
+    </script>
+
+    <section class="section">
+      <div class="container">
+        <section id="headline" class="columns is-mobile">
+        </section>
+
+        <section id="content"></section>
+      </div>
+    </section>
+    <footer id="footer" class="footer"></footer>
+  </body>
+</html>

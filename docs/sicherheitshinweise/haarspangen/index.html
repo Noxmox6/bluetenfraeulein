@@ -17,89 +17,78 @@
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
+    <script type="module">
+      import { h, render } from "https://esm.sh/preact";
+      import htm from "https://esm.sh/htm";
+      import TextArticle from '../../scripts/v1/text-article.js';
+      import Impressum from '../../scripts/v1/impressum.js';
+      import Headline from "../../scripts/v1/headline.js";
+
+      const html = htm.bind(h);
+
+      const data = [
+        {
+          strongText: 'Für Kinder unter 3 Jahren ungeeignet',
+          description: 'Kleine Teile können verschluckt werden. Erstickungsgefahr!'
+        }, 
+        {
+          strongText: 'Hautkontakt vermeiden',
+          description: 'UV-Resin kann bei empfindlicher Haut Irritationen auslösen. Direkten und längeren Kontakt mit der Haut möglichst vermeiden.'
+        },
+        {
+          strongText: 'Bruchgefahr',
+          description: 'UV-Resin kann bei zu starkem Druck brechen und scharfe Kanten bilden. Bitte vorsichtig handhaben, um Verletzungen zu vermeiden.'
+        },
+        {
+          strongText: 'Nicht bei offensichtlichen Schäden verwenden',
+          description: 'Haarspangen mit Rissen, Splittern oder scharfen Kanten sofort entsorgen, um Verletzungen zu verhindern.'
+        },
+        {
+          strongText: 'Von starker Hitze oder direkter Sonneneinstrahlung fernhalten',
+          description: 'UV-Resin kann bei hohen Temperaturen verformen, schmelzen oder seine Festigkeit verlieren.'
+        },
+        {
+          strongText: 'Nicht während des Schlafens tragen',
+          description: 'Sie Verletzungen oder Beschädigungen der Spange durch unkontrollierte Bewegungen.'
+        },
+        {
+          strongText: 'Kein Kontakt mit Chemikalien oder Lösemitteln',
+          description: 'UV-Resin kann durch Chemikalien angegriffen oder beschädigt werden.'
+        },
+        {
+          strongText: 'Umweltfreundliche Entsorgung',
+          description: 'Beschädigte Haarspangen oder überschüssiges UV-Resin nicht im Hausmüll entsorgen. Entsorgung gemäß lokalen Vorschriften für Kunststoffe oder Harze.'
+        }
+      ];
+
+      const Content = () => {
+        return html`
+          ${data.map(
+            (entry) => html`
+              <${TextArticle}
+                strongText="${entry.strongText}"
+                description="${entry.description}"
+              />
+            `
+          )}
+        `;
+      };
+
+      render(html`<${Headline} title="Seifenfräulein" subtitle="Sicherheitshinweise Haarspangen" />`, document.getElementById("headline"));
+      render(html`<${Content} />`, document.getElementById("content"));
+      render(html`<${Impressum} />`, document.getElementById("footer"));
+    </script>
+
     <section class="section">
       <div class="container">
-        <section class="columns is-mobile">
-          <div class="column is-1"></div>
-          <div class="column">
-            <h1 class="title is-3">Seifenfräulein</h1>
-            <h2 class="title is-4">Sicherheitshinweise Haarspangen</h2>
-          </div>
+        <section id="headline" class="columns is-mobile">
         </section>
-
-        <script type="module">
-          import { h, render } from "https://esm.sh/preact";
-          import htm from "https://esm.sh/htm";
-          import TextArticle from "../../scripts/text-article.js";
-
-          const html = htm.bind(h);
-
-          const data = [
-            {
-              strongText: 'Für Kinder unter 3 Jahren ungeeignet',
-              description: 'Kleine Teile können verschluckt werden. Erstickungsgefahr!'
-            }, 
-            {
-              strongText: 'Hautkontakt vermeiden',
-              description: 'UV-Resin kann bei empfindlicher Haut Irritationen auslösen. Direkten und längeren Kontakt mit der Haut möglichst vermeiden.'
-            },
-            {
-              strongText: 'Bruchgefahr',
-              description: 'UV-Resin kann bei zu starkem Druck brechen und scharfe Kanten bilden. Bitte vorsichtig handhaben, um Verletzungen zu vermeiden.'
-            },
-            {
-              strongText: 'Nicht bei offensichtlichen Schäden verwenden',
-              description: 'Haarspangen mit Rissen, Splittern oder scharfen Kanten sofort entsorgen, um Verletzungen zu verhindern.'
-            },
-            {
-              strongText: 'Von starker Hitze oder direkter Sonneneinstrahlung fernhalten',
-              description: 'UV-Resin kann bei hohen Temperaturen verformen, schmelzen oder seine Festigkeit verlieren.'
-            },
-            {
-              strongText: 'Nicht während des Schlafens tragen',
-              description: 'Sie Verletzungen oder Beschädigungen der Spange durch unkontrollierte Bewegungen.'
-            },
-            {
-              strongText: 'Kein Kontakt mit Chemikalien oder Lösemitteln',
-              description: 'UV-Resin kann durch Chemikalien angegriffen oder beschädigt werden.'
-            },
-            {
-              strongText: 'Umweltfreundliche Entsorgung',
-              description: 'Beschädigte Haarspangen oder überschüssiges UV-Resin nicht im Hausmüll entsorgen. Entsorgung gemäß lokalen Vorschriften für Kunststoffe oder Harze.'
-            }
-          ];
-
-          const Content = () => {
-            return html`
-              ${data.map(
-                (entry) => html`
-                  <${TextArticle}
-                    strongText="${entry.strongText}"
-                    description="${entry.description}"
-                  />
-                `
-              )}
-            `;
-          };
-
-          render(html`<${Content} />`, document.getElementById("content"));
-        </script>
 
         <section id="content">
         </section>
       </div>
     </section>
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <div class="columns is-mobile">
-          <div class="column has-text-right">Impressum:</div>
-          <div class="column has-text-left">
-            <div>Julia Albrecht</div>
-            <div>Augustastraße 12</div>
-            <div>02826 Görlitz</div>
-          </div>
-        </div>
-      </div>
+    <footer id="footer" class="footer">
     </footer>
   </body>
 </html>
