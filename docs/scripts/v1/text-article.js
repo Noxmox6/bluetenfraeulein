@@ -10,8 +10,8 @@ export const TextArticle = (probs) => {
         <span class="counter"></span>
       </div>
       <div class="column">
-        <p class="has-text-justified">
-          <strong>${probs.strongText}</strong>: <span>${probs.description}</span>
+        <p class="has-text-left">
+          <strong>${probs.strongText}:</strong> <span>${probs.description}</span>
         </p>
       </div>
     </article>
